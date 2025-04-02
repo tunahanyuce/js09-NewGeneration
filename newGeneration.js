@@ -165,17 +165,21 @@ console.log(job);
 console.log("************************");
 
 const printVeri = (veri) => {
-  console.log(veri.id, veri.bilgi, veri.tarih);
+    console.log(veri.id, veri.bilgi, veri.tarih);
+    
 };
 
 const printVeriDest = (veri) => {
-  const { id, bilgi, tarih } = veri;
+const {id,bilgi,tarih}=veri
 
-  console.log(id, bilgi, tarih);
+console.log(id, bilgi, tarih);
+
+
 };
 
-const printVeriHavadaDest = ({ id, bilgi, tarih }) => {
-  console.log(id, bilgi, tarih);
+const printVeriHavadaDest = ({id,bilgi,tarih}) => {
+    console.log(id,bilgi, tarih);
+    
 };
 
 const data = {
@@ -192,8 +196,9 @@ printVeriHavadaDest(data);
 //*  DESTRUCTURING (ARRAY)
 //* =============================================
 
-const people = ["Muzaffer", "Mehmet", "RAife", "Mustafa", "Özgür"];
-const [kisi1, kisi2, kisi3] = people;
+const people=["Muzaffar","Mehmet","Raife","Mustafa","Özgür"]
+
+const [kisi1,kisi2,,kisi3]=people 
 console.log(kisi3);
 
 //* ==============================================
@@ -204,21 +209,93 @@ console.log(kisi3);
 
 //! 1- Bir dizi veya object'deki bazi degerlerden geri kalanlarini ayri dizi yada objelere kopyalanmasini saglayabilir.
 
-//? ARRAY
-const takimlar = ["GS", "FB", "BJK", "TS", "DENİZLİSPOR", "BURSA", "İSTANBUL"];
-const [takim1, takim2, takim3, ...anadoluTakimlari] = takimlar;
+
+
+//?ARRAY
+const takimlar=["GS","FB","BJK", "TS","DENİZLİSPOR", "BURSA","İSTANBUL"]
+
+const[takim1,takim2,takim3, ...anadoluTakimlari]=takimlar
+
 console.log(anadoluTakimlari);
 console.log(takim1);
 
-//?
-const person = {
-  adi: "ipek",
-  soyad: "bilir",
-  meslek: "ev hanimi",
-  yas: 34,
-};
-const { ad, soyad, ...geriKalan } = person;
+
+//?OBJECT
+
+const person={
+    ad:"ipek",
+    soyad:"bilir",
+    meslek:"ev hanimi",
+    yas:34
+}
+
+const {ad,soyad, ...geriKalan}=person
+
 console.log(geriKalan);
 console.log(geriKalan.yas);
 
+//! 2- Bir fonksiyon argümanlarını diziye çevirmek için kullanılır
 
+
+const topla1=(...a)=>{
+console.log(a);
+
+return a.reduce((x,y)=> x+y)
+}
+const topla2=(a,b,c,...diger)=>{
+    console.log(diger);
+    return a+b+c
+
+}
+
+console.log(topla1(5,6,7,1,9,45,8));
+
+console.log(topla2(1,3,5,4,8,2));
+//? REST (...) ile non-iterable olan sayilari iterable hale (diziye) cevirmiş olduk.
+
+//? Spread operatörü ise iterables olan bir elemanı bireysel
+//? değerler haline getirir.
+const ucanAraclar = ["helikopter","drone","ucak","fuze"];
+const karaAracları =["araba","bisiklet","scooter","mososiklet"];
+const tasitlar = [ucanAraclar, karaAracları];
+console.log(tasitlar);
+const tasitlar2=[...ucanAraclar,...karaAracları]
+console.log(tasitlar2);
+//ornek
+const cumle="sen kalem ol bende kağıt"
+console.log([...cumle]);
+
+
+//? nested
+const sahislar = {
+    sahis1: {
+      name: "Can",
+      surname: "Canan",
+      dob: "1990",
+      job: "developer",
+      salary: "140000",
+      drivingLicense: true,
+    },
+    sahis2: {
+      name: "John",
+      surname: "Sweet",
+      dob: "1990",
+      job: "tester",
+      salary: "110000",
+      drivingLicense: false,
+    },
+    sahis3: {
+      name: "Steve",
+      surname: "Job",
+      dob: "2000",
+      job: "developer",
+      salary: "90000",
+      drivingLicense: true,
+    },
+  };
+  
+//! Javascript'de Objeler default olarak iterable degildir.
+//? Ama for in ve for of donguleri ile itere edilebilirler.
+
+//? Objelerin key ve value'larini okumak icin built-in metotlar vardir.
+//? Bu mettotlar aslinda objelerin key ve/veya value'lari bir dizi olarak dondurur.
